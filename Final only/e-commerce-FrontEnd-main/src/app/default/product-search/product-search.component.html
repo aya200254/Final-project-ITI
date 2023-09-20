@@ -1,0 +1,15 @@
+<section id="products">
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-3 col-sm-4 col-11 offset-sm-0 offset-1" *ngFor="let item of ProductsearchResults">
+              <div class="card">
+                  <img class="card-img-top" [src]="item.imagepath" alt="Card image cap">
+                  <div class="card-body">
+                    <p class="card-text">{{item.name}}</p>
+                    <p>{{item.price | currency:"EGP"}}</p>    
+                  </div>
+                </div>
+          </div>
+      </div>
+  </div>
+  </section>

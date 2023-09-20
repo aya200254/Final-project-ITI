@@ -1,0 +1,243 @@
+<main id="main">
+    <div class="container">
+        <!--MAIN SLIDE-->
+        <div class="wrap-main-slide">
+            <div class="slide-carousel style-nav-1">
+                <owl-carousel-o [options]="bannerOptions">
+                    <ng-template carouselSlide>
+                        <div class="item-slide">
+                            <img src="https://www.shutterstock.com/image-vector/promo-sale-banner-library-bookshop-260nw-1790872166.jpg" alt="" class="img-slide" style="height: 450px;">
+                            <div class="slide-info slide-1">
+                                <h2 class="f-title" style="color: white;">Kid Smart <b style="color: white;">Watches</b></h2>
+                                <span class="subtitle" style="color: white;">Compra todos tus productos Smart por internet.</span>
+                                <p class="sale-info" style="color: white;">Only price: <span class="price" style="color: white;">$59.99</span></p>
+                                <a routerLink="/categories/1/Electronics/page/1" class="btn-link">Shop Now</a>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <div class="item-slide">
+                            <img src="assets/images/books/01.jpg" alt="" class="img-slide">
+                            <div class="slide-info slide-2">
+                                <h2 class="f-title">Extra 25% Off</h2>
+                                <span class="f-subtitle">On online payments</span>
+                                <p class="discount-code">Use Code: #FA6868</p>
+                                <h4 class="s-title">Get Free</h4>
+                                <p class="s-subtitle">TRansparent Bra Straps</p>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <div class="item-slide">
+                            <img src="assets/images/books/02.jpg" alt="" class="img-slide">
+                            <div class="slide-info slide-3">
+                                <h2 class="f-title">Great Range of <b>Exclusive Furniture Packages</b></h2>
+                                <span class="f-subtitle">Exclusive Furniture Packages to Suit every need.</span>
+                                <p class="sale-info">Stating at: <b class="price">$225.00</b></p>
+                                <a routerLink="/categories/1/Furniture/page/1" class="btn-link">Shop Now</a>
+                            </div>
+                        </div>
+                    </ng-template>
+                </owl-carousel-o>
+            </div>
+        </div>
+
+        <!--BANNER-->
+        <div class="wrap-banner style-twin-default">
+            <div class="banner-item">
+                <a routerLink="/categories/1/Electronics/page/1" class="link-banner banner-effect-1">
+                    <figure><img src="https://manybooks.net/sites/default/files/styles/735x540sc/public/2019-03/rothfuss.jpg?itok=CGlt7KiK" alt="" width="580" height="190"></figure>
+                </a>
+            </div>
+            <div class="banner-item">
+                <a routerLink="/categories/1/Fashion/page/1" class="link-banner banner-effect-1">
+                    <figure><img src="https://i0.wp.com/farm8.staticflickr.com/7014/6760394097_66d5f72d88.jpg" alt="" width="580" height="250" style="height:430px;"></figure>
+                </a>
+            </div>
+        </div>
+        <!--On Sale-->
+        <div class="wrap-show-advance-info-box style-1">
+            <h3 class="title-box">On Sale</h3>
+            <div class="wrap-top-banner">
+                <a routerLink="/categories/1/Fashion/page/1" class="link-banner banner-effect-2">
+                    <figure><img src="https://i.guim.co.uk/img/media/77e3e93d6571da3a5d77f74be57e618d5d930430/0_0_2560_1536/master/2560.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=c99740fab952ee29d238d75272b98a61" width="1170" height="240" alt="">
+                    </figure>
+                </a>
+            </div>
+            <div class="wrap-products">
+                <div class="wrap-product-tab tab-style-1">
+                    <div class="tab-contents">
+                        <div class="tab-content-item active" id="digital_1a">
+                            <div class="wrap-products slide-carousel style-nav-1 equal-container">
+                                <owl-carousel-o [options]="customOptions" *ngIf="productsOnsale">
+                                    <ng-template carouselSlide *ngFor="let product of productsOnsale">
+                                        <div class="product product-style-2 equal-elem">
+                                            <div class="product-thumnail">
+                                                <a routerLink="/products/{{product['product-id']}}" title="{{product['attributes'].name}}">
+                                                    <figure><img src="{{product['attributes'].imagepath}}" width="800"
+                                                            height="800" alt="{{product['attributes'].name}}">
+                                                    </figure>
+                                                </a>
+                                                <div class="group-flash">
+                                                    <span class="flash-item new-label">new</span>
+                                                    <span class="flash-item sale-label"
+                                                        *ngIf="product['attributes'].Discount != null">sale</span>
+                                                </div>
+                                                <div class="wrap-btn">
+                                                    <a routerLink="/products/{{product['product-id']}}" class="function-link">quick view</a>
+                                                </div>
+                                            </div>
+                                            <div class="product-info">
+                                                <a routerLink="/products/{{product['product-id']}}"
+                                                    class="product-name"><span>${{product['attributes'].name}}</span></a>
+                                                <ngb-rating [max]="5" [(rate)]="product['attributes'].rating"
+                                                    [readonly]="true"></ngb-rating>
+                                                <div class="wrap-price" *ngIf="product['attributes'].Discount != null">
+                                                    <ins>
+                                                        <p class="product-price">${{((product['attributes'].price) -
+                                                            ((product['attributes'].price)*(product['attributes'].Discount['attributes'].discount_percent)/100)).toFixed(2)}}
+                                                        </p>
+                                                    </ins> <del>
+                                                        <p class="product-price">${{product['attributes'].price}}</p>
+                                                    </del>
+                                                </div>
+                                                <div class="wrap-price" *ngIf="product['attributes'].Discount === null">
+                                                    <span class="product-price">${{product['attributes'].price}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </owl-carousel-o>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wrap-show-advance-info-box style-1">
+            <h3 class="title-box">Latest Products</h3>
+            <div class="wrap-top-banner">
+                <a routerLink="/categories/1/Electronics/page/1" class="link-banner banner-effect-2">
+                    <figure><img src="https://wamu.org/wp-content/uploads/2021/12/maureen-corrigan-reads-1_wide-e615c2a00bea413867488f80493e523a08b9ec88.jpg" width="1170" height="240" alt="">
+                    </figure>
+                </a>
+            </div>
+            <div class="wrap-products">
+                <div class="wrap-product-tab tab-style-1">
+                    <div class="tab-contents">
+                        <div class="tab-content-item active" id="digital_1a">
+                            <div class="wrap-products slide-carousel style-nav-1 equal-container">
+                                <owl-carousel-o [options]="customOptions" *ngIf="latestProducts">
+                                    <ng-template carouselSlide *ngFor="let product of latestProducts">
+                                        <div class="product product-style-2 equal-elem">
+                                            <div class="product-thumnail">
+                                                <a routerLink="/products/{{product['product-id']}}" title="{{product['attributes'].name}}">
+                                                    <figure><img src="{{product['attributes'].imagepath}}" width="800"
+                                                            height="800" alt="{{product['attributes'].name}}">
+                                                    </figure>
+                                                </a>
+                                                <div class="group-flash">
+                                                    <span class="flash-item new-label">new</span>
+                                                    <span class="flash-item sale-label"
+                                                        *ngIf="product['attributes'].Discount != null">sale</span>
+                                                </div>
+                                                <div class="wrap-btn">
+                                                    <a routerLink="/products/{{product['product-id']}}" class="function-link">quick view</a>
+                                                </div>
+                                            </div>
+                                            <div class="product-info">
+                                                <a routerLink="/products/{{product['product-id']}}"
+                                                    class="product-name"><span>{{product['attributes'].name}}</span></a>
+                                                <ngb-rating [max]="5" [(rate)]="product['attributes'].rating"
+                                                    [readonly]="true"></ngb-rating>
+                                                <div class="wrap-price" *ngIf="product['attributes'].Discount != null">
+                                                    <ins>
+                                                        <p class="product-price">${{((product['attributes'].price) -
+                                                            ((product['attributes'].price)*(product['attributes'].Discount['attributes'].discount_percent)/100)).toFixed(2)}}
+                                                        </p>
+                                                    </ins> <del>
+                                                        <p class="product-price">${{product['attributes'].price}}</p>
+                                                    </del>
+                                                </div>
+                                                <div class="wrap-price" *ngIf="product['attributes'].Discount === null">
+                                                    <span class="product-price">${{product['attributes'].price}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </owl-carousel-o>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Product Categories-->
+        <div class="wrap-show-advance-info-box style-1">
+            <h3 class="title-box">Product Categories</h3>
+            <div class="wrap-top-banner">
+                <a routerLink="/categories/1/Fahion/page/1" class="link-banner banner-effect-2">
+                    <figure><img src="https://www.torontopubliclibrary.ca/images/teens/books-reading/20-before-20.jpg" width="1170" height="240" alt="" style="height: 500px;">
+                    </figure>
+                </a>
+            </div>
+            <div class="wrap-products">
+                <div class="wrap-product-tab tab-style-1">
+                    <div class="tab-control">
+                        <a id="first-element" class="tab-control-item" *ngFor="let category of categories"
+                            href="#{{category['attributes'].name}}" [class.active]="category['Category-id'] == 1"
+                            (click)="showProductsByCategory(category['attributes'].name)">{{category['attributes'].name}}</a>
+                    </div>
+                    <div class="tab-contents">
+                        <div class="tab-content-item" *ngFor="let category of categories"
+                            [class.active]="category['Category-id'] == 1" id="{{category['attributes'].name}}">
+                            <div class="wrap-products slide-carousel style-nav-1 equal-container">
+                                <owl-carousel-o [options]="customOptions" *ngIf="productsCollectionByCategory">
+                                    <ng-template carouselSlide *ngFor="let product of productsCollectionByCategory">
+                                        <div class="product product-style-2 equal-elem">
+                                            <div class="product-thumnail">
+                                                <a routerLink="/products/{{product['product-id']}}" title="{{product['attributes'].name}}">
+                                                    <figure><img src="{{product['attributes'].imagepath}}" width="800"
+                                                            height="800" alt="{{product['attributes'].name}}">
+                                                    </figure>
+                                                </a>
+                                                <div class="group-flash">
+                                                    <span class="flash-item new-label">new</span>
+                                                    <span class="flash-item sale-label"
+                                                        *ngIf="product['attributes'].Discount != null">sale</span>
+                                                </div>
+                                                <div class="wrap-btn">
+                                                    <a routerLink="/products/{{product['product-id']}}" class="function-link">quick view</a>
+                                                </div>
+                                            </div>
+                                            <div class="product-info">
+                                                <a routerLink="/products/{{product['product-id']}}"
+                                                    class="product-name"><span>{{product['attributes'].name}}</span></a>
+                                                <ngb-rating [max]="5" [(rate)]="product['attributes'].rating"
+                                                    [readonly]="true"></ngb-rating>
+                                                <div class="wrap-price" *ngIf="product['attributes'].Discount != null">
+                                                    <ins>
+                                                        <p class="product-price">${{((product['attributes'].price) -
+                                                            ((product['attributes'].price)*(product['attributes'].Discount['attributes'].discount_percent)/100)).toFixed(2)}}
+                                                        </p>
+                                                    </ins> <del>
+                                                        <p class="product-price">${{product['attributes'].price}}</p>
+                                                    </del>
+                                                </div>
+                                                <div class="wrap-price" *ngIf="product['attributes'].Discount === null">
+                                                    <span class="product-price">${{product['attributes'].price}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </owl-carousel-o>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</main>

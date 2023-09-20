@@ -1,0 +1,92 @@
+<div class="card card-primary card-outline p-2">
+    <div class="card-header">
+        <h3 class="card-title">Search</h3>
+        <div class="card-tools d-flex flex-self-start gap-2">
+            <div class="input-group input-group-sm">
+                <span style="margin-right: 15px;">Search Category</span>
+                <select *ngIf="filteredCategories" class="form-select" [(ngModel)]="selectedCategory" (change)="valueSelected()">
+                    <option *ngFor="let category of filteredCategories" [ngValue]="category['attributes'].name" [selected]="1">
+                        {{category['attributes'].name}}</option>
+                </select>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="card-body p-0">
+        <div class="mailbox-controls">
+            <button type="button" class="btn btn-default btn-sm" fdprocessedid="33yis" data-bs-toggle="modal"
+                routerLink="/admin/categories/new">
+                <i class="fa fa-plus-circle me-2"></i>Add New Category
+            </button>
+            <button type="button" class="btn btn-default btn-sm" fdprocessedid="yuhkw">
+                <i class="fas fa-sync-alt" (click)="refreshComponent()"></i>
+            </button>
+            <div class="float-right">
+                1-50/200
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default btn-sm" fdprocessedid="v3f7wo">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm" fdprocessedid="lm75qe">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="table-responsive mailbox-messages">
+            <fieldset class="alert alert-danger" *ngIf="errorMessage">
+                {{errorMessage}}
+            </fieldset>
+            <fieldset class="alert alert-success" *ngIf="successMessage">
+                {{successMessage}}
+            </fieldset>
+            <table class="table table-hover table-striped">
+                <tbody>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Tools</th>
+                    </tr>
+                    <tr *ngFor="let category of categories">
+                        <td>{{category['Category-id']}}</td>
+                        <td>{{category['attributes'].name}}</td>
+                        <td>{{category['attributes'].desc}}</td>
+                        <td class="d-flex">
+                            <a class="btn btn-default btn-sm" fdprocessedid="t404js"
+                                routerLink="/admin/categories/{{category['Category-id']}}/edit">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <button type="button" class="btn btn-default btn-sm" fdprocessedid="t404js">
+                                <i class="fas fa-trash" *ngIf="category['Category-id']" (click)="onDelete(category['Category-id'])"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+    <div class="card-footer p-0">
+        <div class="mailbox-controls">
+            <div class="float-right">
+                1-50/200
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default btn-sm" fdprocessedid="8vgle">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm" fdprocessedid="xaeoet">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

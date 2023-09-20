@@ -1,0 +1,40 @@
+<div>
+    <div class="modal-dialog modal-md">
+        <fieldset class="alert alert-danger" *ngIf="errorMessage">
+            {{errorMessage}}
+        </fieldset>
+        <fieldset class="alert alert-success" *ngIf="successMessage">
+            {{successMessage}}
+        </fieldset>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Inventory</h1>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="d-flex justify-content-center container-fluid">
+                        <form class="w-100 m-3" [formGroup]="newInventory" (ngSubmit)="onSubmit()">
+                            <div class="mb-3 row">
+                                <div class="col-2">
+                                    <label for="inventoryQuantity" class="form-label">Quantity</label>
+                                </div>
+                                <div class="col-10">
+                                    <input type="text" class="form-control" id="inventoryQuantity" fdprocessedid="k63lp"
+                                        formControlName="quantity"/>
+                                    <div style="color: red;" class="bg-danger" *ngIf="isSubmitted && !quantityValid">
+                                        <sup>*</sup>Please provide inventory quantity
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" routerLink="/admin/products">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Add Inventory</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
